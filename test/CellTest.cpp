@@ -5,12 +5,23 @@
  *      Author: furukawayoshihiro
  */
 
-#include <gtest/gtest.h>
-#include "../src/Cell.h"
+#include "CellTest.h"
 
-TEST(CellTest,initialize){
-	Cell* cell;
+void CellTest::SetUp() {
 	cell = new Cell();
-	EXPECT_EQ(false, cell->isAlive());
-	delete cell;
 }
+
+void CellTest::TearDown() {
+	delete cell;
+	cell = NULL;
+}
+
+TEST_F(CellTest, initialize){
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+TEST_F(CellTest, initialize_alive) {
+	cell->setAlive();
+	EXPECT_EQ(true, cell->isAlive());
+}
+

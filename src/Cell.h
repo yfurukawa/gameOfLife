@@ -9,10 +9,13 @@
 #define CELL_H_
 
 class Cell {
+private:
+	bool isAlive_;
 public:
 	Cell();
 	virtual ~Cell();
 	bool isAlive();
+	void setAlive() { isAlive_ = true; };
 };
 
 #endif /* CELL_H_ */

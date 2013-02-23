@@ -7,7 +7,7 @@
 
 #include "Cell.h"
 
-Cell::Cell() {
+Cell::Cell() : isAlive_(false) {
 	// TODO Auto-generated constructor stub
 
 }
@@ -17,5 +17,5 @@ Cell::~Cell() {
 }
 
 bool Cell::isAlive() {
-	return false;
+	return isAlive_;
 }
