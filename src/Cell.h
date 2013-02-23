@@ -22,7 +22,7 @@ private:
 public:
 	Cell();
 	virtual ~Cell();
-	bool isAlive();
+	virtual bool isAlive();
 	void setAlive() {
 		isAlive_ = true;
 	}

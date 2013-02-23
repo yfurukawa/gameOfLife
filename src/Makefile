@@ -6,8 +6,8 @@ LIB =
 OPT = -O0 -g3 -Wall -fmessage-length=0
 
 TARGET = gameOfLife
-SRC= Cell.cpp
-OBJ= Cell.o
+SRC= Cell.cpp NullCell.cpp
+OBJ= Cell.o NullCell.o
 
 $(TARGET): $(OBJ) main.o 
 	$(CC) $(INCLUDE) $(LIB_DIR) $(OPT) -o $(TARGET) $(OBJ) main.o
