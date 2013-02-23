@@ -8,9 +8,16 @@
 #include <gtest/gtest.h>
 #include "../src/Cell.h"
 
-TEST(CellTest,initialize){
+TEST(CellTest, initialize){
 	Cell* cell;
 	cell = new Cell();
 	EXPECT_EQ(false, cell->isAlive());
+	delete cell;
+}
+
+TEST(CellTest, initialize_alive) {
+	Cell* cell;
+	cell = new Cell(true);
+	EXPECT_EQ(true, cell->isAlive());
 	delete cell;
 }

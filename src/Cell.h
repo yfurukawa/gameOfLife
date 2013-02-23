@@ -9,8 +9,11 @@
 #define CELL_H_
 
 class Cell {
+private:
+	bool isAlive_;
 public:
 	Cell();
+	Cell(bool isAlive);
 	virtual ~Cell();
 	bool isAlive();
 };
