@@ -11,31 +11,11 @@
 class Cell {
 private:
 	bool isAlive_;
-	Cell* UpperLeftCell_;
-	Cell* UpperCell_;
-	Cell* UpperRightCell_;
-	Cell* LeftCell_;
-	Cell* RightCell_;
-	Cell* LowerLeftCell_;
-	Cell* LowerCell_;
-	Cell* LowerRightCell_;
 public:
 	Cell();
+	Cell(bool isAlive);
 	virtual ~Cell();
 	bool isAlive();
-	void setAlive() {
-		isAlive_ = true;
-	}
-	void setLeftCell(Cell* leftCell);
-	void setLowerCell(Cell* lowerCell);
-	void setLowerLeftCell(Cell* lowerLeftCell);
-	void setLowerRightCell(Cell* lowerRightCell);
-	void setRightCell(Cell* rightCell);
-	void setUpperCell(Cell* upperCell);
-	void setUpperLeftCell(Cell* upperLeftCell);
-	void setUpperRightCell(Cell* upperRightCell);
-	int checkNumberOfNeiborhoodIsAlive();
-
 };
 
 #endif /* CELL_H_ */
