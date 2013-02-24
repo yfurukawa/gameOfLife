@@ -8,16 +8,19 @@
 #ifndef CELLTEST_H_
 #define CELLTEST_H_
 
+#include <iostream>
 #include <gtest/gtest.h>
 #include "../src/Cell.h"
 
 class CellTest : public ::testing::Test {
 protected:
 	Cell* cell;
+	Cell* neiborhoodCell;
+	Cell* nullCell;
 protected:
 	virtual void SetUp();
 	virtual void TearDown();
-	CellTest() : cell(NULL) {};
+	CellTest() : cell(NULL), neiborhoodCell(NULL), nullCell(NULL) {};
 	virtual ~CellTest() {};
 };
 

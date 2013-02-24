@@ -56,6 +56,7 @@ bool Cell::isAlive() {
 int Cell::checkNumberOfNeiborhoodIsAlive() {
 	int count(0);
 	if(UpperLeftCell_->isAlive_) {
+		std::cout << UpperLeftCell_->isAlive_ << std::endl;
 		++count;
 	}
 	if(UpperCell_->isAlive_) {

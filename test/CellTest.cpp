@@ -5,16 +5,25 @@
  *      Author: furukawayoshihiro
  */
 
+#include <iostream>
 #include "CellTest.h"
 #include "NullCell.h"
 
 void CellTest::SetUp() {
 	cell = new Cell();
+	neiborhoodCell = new Cell();
+	nullCell = new Cell();
 }
 
 void CellTest::TearDown() {
 	delete cell;
 	cell = NULL;
+
+	delete neiborhoodCell;
+	neiborhoodCell = NULL;
+
+	delete nullCell;
+	nullCell = NULL;
 }
 
 TEST_F(CellTest, initialize){
@@ -27,36 +36,28 @@ TEST_F(CellTest, initialize_alive) {
 }
 
 TEST_F(CellTest, checkAliveNeiborhoodIsZero) {
-	Cell* cell;
-	cell = new Cell();
-	cell->setUpperLeftCell(cell);
-	cell->setUpperCell(cell);
-	cell->setUpperRightCell(cell);
-	cell->setLeftCell(cell);
-	cell->setRightCell(cell);
-	cell->setLowerLeftCell(cell);
-	cell->setLowerCell(cell);
-	cell->setLowerRightCell(cell);
-	EXPECT_EQ(0, cell->checkNumberOfNeiborhoodIsAlive());
-}
-
-TEST_F(CellTest, checkAliveNeiborhoodIsOne) {
-	Cell* neiborhoodCell;
-	neiborhoodCell = new Cell();
 	cell->setUpperLeftCell(neiborhoodCell);
-	neiborhoodCell = new NullCell();
 	cell->setUpperCell(neiborhoodCell);
 	cell->setUpperRightCell(neiborhoodCell);
 	cell->setLeftCell(neiborhoodCell);
 	cell->setRightCell(neiborhoodCell);
 	cell->setLowerLeftCell(neiborhoodCell);
 	cell->setLowerCell(neiborhoodCell);
-	delete neiborhoodCell;
-	Cell* neiborCell;
-	neiborCell = new Cell();
-	neiborCell->setAlive();
-	cell->setLowerRightCell(neiborCell);
+	cell->setLowerRightCell(neiborhoodCell);
+	EXPECT_EQ(0, cell->checkNumberOfNeiborhoodIsAlive());
+}
+
+TEST_F(CellTest, checkAliveNeiborhoodIsOne) {
+	cell->setUpperLeftCell(nullCell);
+	cell->setUpperCell(nullCell);
+	cell->setUpperRightCell(nullCell);
+	cell->setLeftCell(nullCell);
+	cell->setRightCell(nullCell);
+	cell->setLowerLeftCell(nullCell);
+	cell->setLowerCell(nullCell);
+
+	neiborhoodCell->setAlive();
+	cell->setLowerRightCell(neiborhoodCell);
 	EXPECT_EQ(1, cell->checkNumberOfNeiborhoodIsAlive());
-	delete neiborCell;
 }
 
