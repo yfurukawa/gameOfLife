@@ -97,6 +97,15 @@ TEST_F(CellTest, nextGenertionIsAliveEther) {
 }
 
 TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
+	cell->setAlive();
+	cell->decideNextGeneration(1);
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+TEST_F(CellTest, AliveToDie) {
+	cell->decideNextGeneration(2);
+	cell->updateGeneration();
 	cell->decideNextGeneration(1);
 	cell->updateGeneration();
 	EXPECT_EQ(false, cell->isAlive());

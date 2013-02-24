@@ -89,7 +89,10 @@ void Cell::updateGeneration() {
 }
 
 void Cell::decideNextGeneration(int numberOfAliveCell) {
-	if(numberOfAliveCell == 2) {
+	if(numberOfAliveCell == 1) {
+		candidateAlive_ = false;
+	}
+	else if(numberOfAliveCell == 2) {
 		candidateAlive_ = true;
 	}
 	else if (numberOfAliveCell == 3 && isAlive()) {
