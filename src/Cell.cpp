@@ -98,4 +98,16 @@ void Cell::decideNextGeneration(int numberOfAliveCell) {
 	else if (numberOfAliveCell == 3 && isAlive()) {
 		candidateAlive_ = true;
 	}
+	else {
+		candidateAlive_ = false;
+	}
+}
+
+void Cell::printMark() {
+	if(isAlive()) {
+		std::cout << "*";
+	}
+	else {
+		std::cout << "-";
+	}
 }

@@ -103,10 +103,18 @@ TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
 	EXPECT_EQ(false, cell->isAlive());
 }
 
-TEST_F(CellTest, AliveToDie) {
+TEST_F(CellTest, AliveToDieDueToDepopulation) {
 	cell->decideNextGeneration(2);
 	cell->updateGeneration();
 	cell->decideNextGeneration(1);
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+TEST_F(CellTest, AliveToDieDueToOverpopulation) {
+	cell->decideNextGeneration(2);
+	cell->updateGeneration();
+	cell->decideNextGeneration(4);
 	cell->updateGeneration();
 	EXPECT_EQ(false, cell->isAlive());
 }

@@ -38,7 +38,7 @@ public:
 	int checkNumberOfNeiborhoodIsAlive();
 	void updateGeneration();
 	void decideNextGeneration(int numberOfAliveCell);
-
+	void printMark();
 };
 
 #endif /* CELL_H_ */
