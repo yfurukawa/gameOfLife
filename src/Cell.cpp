@@ -92,7 +92,7 @@ void Cell::decideNextGeneration(int numberOfAliveCell) {
 	if(numberOfAliveCell == 2) {
 		candidateAlive_ = true;
 	}
-	else if (numberOfAliveCell == 3) {
+	else if (numberOfAliveCell == 3 && isAlive()) {
 		candidateAlive_ = true;
 	}
 }

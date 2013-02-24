@@ -83,7 +83,14 @@ TEST_F(CellTest, nextGenerationIsBoned) {
 	EXPECT_EQ(true, cell->isAlive());
 }
 
-TEST_F(CellTest, nextGenertionIsAlive) {
+TEST_F(CellTest, nextGenertionIsNotAlive) {
+	cell->decideNextGeneration(3);
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+TEST_F(CellTest, nextGenertionIsAliveEther) {
+	cell->setAlive();
 	cell->decideNextGeneration(3);
 	cell->updateGeneration();
 	EXPECT_EQ(true, cell->isAlive());
