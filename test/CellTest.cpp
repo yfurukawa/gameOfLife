@@ -5,9 +5,11 @@
  *      Author: furukawayoshihiro
  */
 
-#include <iostream>
+#include <gtest/gtest.h>
 #include "CellTest.h"
-#include "NullCell.h"
+#include "Cell.h"
+#include "nullCell.h"
+
 
 void CellTest::SetUp() {
 	cell = new Cell();
@@ -61,3 +63,16 @@ TEST_F(CellTest, checkAliveNeiborhoodIsOne) {
 	EXPECT_EQ(1, cell->checkNumberOfNeiborhoodIsAlive());
 }
 
+TEST_F(CellTest, checkAliveNeiborhoodIsTwo) {
+	cell->setUpperLeftCell(nullCell);
+	cell->setUpperCell(nullCell);
+	cell->setUpperRightCell(nullCell);
+	cell->setLeftCell(nullCell);
+	cell->setRightCell(nullCell);
+	cell->setLowerLeftCell(nullCell);
+
+	neiborhoodCell->setAlive();
+	cell->setLowerCell(neiborhoodCell);
+	cell->setLowerRightCell(neiborhoodCell);
+	EXPECT_EQ(2, cell->checkNumberOfNeiborhoodIsAlive());
+}
