@@ -11,6 +11,7 @@
 class Cell {
 private:
 	bool isAlive_;
+	bool candidateAlive_;
 	Cell* UpperLeftCell_;
 	Cell* UpperCell_;
 	Cell* UpperRightCell_;
@@ -35,6 +36,8 @@ public:
 	void setUpperLeftCell(Cell* upperLeftCell);
 	void setUpperRightCell(Cell* upperRightCell);
 	int checkNumberOfNeiborhoodIsAlive();
+	void updateGeneration();
+	void decideNextGeneration(int numberOfAliveCell);
 
 };
 

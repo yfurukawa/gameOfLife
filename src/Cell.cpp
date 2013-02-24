@@ -7,7 +7,7 @@
 #include <iostream>
 #include "Cell.h"
 
-Cell::Cell() : isAlive_(false), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
+Cell::Cell() : isAlive_(false), candidateAlive_(false), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
 		LeftCell_(NULL), RightCell_(NULL), LowerLeftCell_(NULL), LowerCell_(NULL), LowerRightCell_(NULL) {
 	// TODO Auto-generated constructor stub
 
@@ -82,4 +82,17 @@ int Cell::checkNumberOfNeiborhoodIsAlive() {
 	}
 
 	return count;
+}
+
+void Cell::updateGeneration() {
+	isAlive_ = candidateAlive_;
+}
+
+void Cell::decideNextGeneration(int numberOfAliveCell) {
+	if(numberOfAliveCell == 2) {
+		candidateAlive_ = true;
+	}
+	else if (numberOfAliveCell == 3) {
+		candidateAlive_ = true;
+	}
 }

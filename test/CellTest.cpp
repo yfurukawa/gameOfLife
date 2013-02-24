@@ -76,3 +76,21 @@ TEST_F(CellTest, checkAliveNeiborhoodIsTwo) {
 	cell->setLowerRightCell(neiborhoodCell);
 	EXPECT_EQ(2, cell->checkNumberOfNeiborhoodIsAlive());
 }
+
+TEST_F(CellTest, nextGenerationIsBoned) {
+	cell->decideNextGeneration(2);
+	cell->updateGeneration();
+	EXPECT_EQ(true, cell->isAlive());
+}
+
+TEST_F(CellTest, nextGenertionIsAlive) {
+	cell->decideNextGeneration(3);
+	cell->updateGeneration();
+	EXPECT_EQ(true, cell->isAlive());
+}
+
+TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
+	cell->decideNextGeneration(1);
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
