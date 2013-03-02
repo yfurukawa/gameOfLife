@@ -19,6 +19,11 @@ Field::Field(int Width, int Hight)  : Width_(Width), Hight_(Hight) {
 
 Field::~Field() {
 	// TODO Auto-generated destructor stub
+	for(int y = 0; y < Hight_; ++y){
+			for(int x = 0; x < Width_; ++x){
+				delete getCell(x, y);
+			}
+		}
 }
 
 void Field::prepairField() {
@@ -87,11 +92,8 @@ void Field::updateGeneration() {
 }
 
 void Field::run() {
-	while(1){
-		system("clear");
-		decideNextGeneration();
-		updateGeneration();
-		printField();
-		sleep(1);
-	}
+	system("clear");
+	decideNextGeneration();
+	updateGeneration();
+	printField();
 }
