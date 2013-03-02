@@ -50,6 +50,67 @@ TEST_F(CellTest, checkAliveNeiborhoodIsZero) {
 }
 
 TEST_F(CellTest, checkAliveNeiborhoodIsOne) {
+	prepairOneAliveCell();
+	EXPECT_EQ(1, cell->checkNumberOfNeiborhoodIsAlive());
+}
+
+TEST_F(CellTest, checkAliveNeiborhoodIsTwo) {
+	prepairTwoAliveCells();
+	EXPECT_EQ(2, cell->checkNumberOfNeiborhoodIsAlive());
+}
+
+TEST_F(CellTest, nextGenerationIsBoned) {
+	prepairTwoAliveCells();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+	EXPECT_EQ(true, cell->isAlive());
+}
+
+TEST_F(CellTest, nextGenertionIsNotAlive) {
+	prepairThreeAliveCells();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+TEST_F(CellTest, nextGenertionIsAliveEther) {
+	prepairThreeAliveCells();
+	cell->setAlive();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+	EXPECT_EQ(true, cell->isAlive());
+}
+
+TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
+	prepairOneAliveCell();
+	cell->setAlive();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+TEST_F(CellTest, AliveToDieDueToDepopulation) {
+	prepairTwoAliveCells();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+
+	prepairOneAliveCell();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+TEST_F(CellTest, AliveToDieDueToOverpopulation) {
+	prepairTwoAliveCells();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+	prepairFourAliveCells();
+	cell->decideNextGeneration();
+	cell->updateGeneration();
+	EXPECT_EQ(false, cell->isAlive());
+}
+
+void CellTest::prepairOneAliveCell() {
 	cell->setUpperLeftCell(nullCell);
 	cell->setUpperCell(nullCell);
 	cell->setUpperRightCell(nullCell);
@@ -57,13 +118,11 @@ TEST_F(CellTest, checkAliveNeiborhoodIsOne) {
 	cell->setRightCell(nullCell);
 	cell->setLowerLeftCell(nullCell);
 	cell->setLowerCell(nullCell);
-
 	neiborhoodCell->setAlive();
 	cell->setLowerRightCell(neiborhoodCell);
-	EXPECT_EQ(1, cell->checkNumberOfNeiborhoodIsAlive());
 }
 
-TEST_F(CellTest, checkAliveNeiborhoodIsTwo) {
+void CellTest::prepairTwoAliveCells() {
 	cell->setUpperLeftCell(nullCell);
 	cell->setUpperCell(nullCell);
 	cell->setUpperRightCell(nullCell);
@@ -74,47 +133,30 @@ TEST_F(CellTest, checkAliveNeiborhoodIsTwo) {
 	neiborhoodCell->setAlive();
 	cell->setLowerCell(neiborhoodCell);
 	cell->setLowerRightCell(neiborhoodCell);
-	EXPECT_EQ(2, cell->checkNumberOfNeiborhoodIsAlive());
 }
 
-TEST_F(CellTest, nextGenerationIsBoned) {
-	cell->decideNextGeneration(2);
-	cell->updateGeneration();
-	EXPECT_EQ(true, cell->isAlive());
+void CellTest::prepairThreeAliveCells() {
+	cell->setUpperLeftCell(nullCell);
+	cell->setUpperCell(nullCell);
+	cell->setUpperRightCell(nullCell);
+	cell->setLeftCell(nullCell);
+	cell->setRightCell(nullCell);
+
+	neiborhoodCell->setAlive();
+	cell->setLowerLeftCell(neiborhoodCell);
+	cell->setLowerCell(neiborhoodCell);
+	cell->setLowerRightCell(neiborhoodCell);
 }
 
-TEST_F(CellTest, nextGenertionIsNotAlive) {
-	cell->decideNextGeneration(3);
-	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
-}
+void CellTest::prepairFourAliveCells() {
+	cell->setUpperLeftCell(nullCell);
+	cell->setUpperCell(nullCell);
+	cell->setUpperRightCell(nullCell);
+	cell->setLeftCell(nullCell);
 
-TEST_F(CellTest, nextGenertionIsAliveEther) {
-	cell->setAlive();
-	cell->decideNextGeneration(3);
-	cell->updateGeneration();
-	EXPECT_EQ(true, cell->isAlive());
-}
-
-TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
-	cell->setAlive();
-	cell->decideNextGeneration(1);
-	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
-}
-
-TEST_F(CellTest, AliveToDieDueToDepopulation) {
-	cell->decideNextGeneration(2);
-	cell->updateGeneration();
-	cell->decideNextGeneration(1);
-	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
-}
-
-TEST_F(CellTest, AliveToDieDueToOverpopulation) {
-	cell->decideNextGeneration(2);
-	cell->updateGeneration();
-	cell->decideNextGeneration(4);
-	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
+	neiborhoodCell->setAlive();
+	cell->setRightCell(neiborhoodCell);
+	cell->setLowerLeftCell(neiborhoodCell);
+	cell->setLowerCell(neiborhoodCell);
+	cell->setLowerRightCell(neiborhoodCell);
 }

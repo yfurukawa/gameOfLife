@@ -37,7 +37,7 @@ public:
 	void setUpperRightCell(Cell* upperRightCell);
 	int checkNumberOfNeiborhoodIsAlive();
 	void updateGeneration();
-	void decideNextGeneration(int numberOfAliveCell);
+	void decideNextGeneration();
 	void printMark();
 };
 

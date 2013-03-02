@@ -22,6 +22,10 @@ protected:
 	virtual void TearDown();
 	CellTest() : cell(NULL), neiborhoodCell(NULL), nullCell(NULL) {};
 	virtual ~CellTest() {};
+	void prepairOneAliveCell();
+	void prepairTwoAliveCells();
+	void prepairThreeAliveCells();
+	void prepairFourAliveCells();
 };
 
 

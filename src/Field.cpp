@@ -13,6 +13,7 @@ Field::Field() : Width_(0), Hight_(0) {
 }
 
 Field::Field(int Width, int Hight)  : Width_(Width), Hight_(Hight) {
+	Cell* cells[Width][Hight];
 }
 
 Field::~Field() {

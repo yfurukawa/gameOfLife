@@ -88,7 +88,8 @@ void Cell::updateGeneration() {
 	isAlive_ = candidateAlive_;
 }
 
-void Cell::decideNextGeneration(int numberOfAliveCell) {
+void Cell::decideNextGeneration() {
+	int numberOfAliveCell = checkNumberOfNeiborhoodIsAlive();
 	if(numberOfAliveCell == 1) {
 		candidateAlive_ = false;
 	}

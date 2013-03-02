@@ -8,6 +8,8 @@
 #ifndef FIELD_H_
 #define FIELD_H_
 
+#include "Cell.h"
+
 class Field {
 private:
 	int Width_;
