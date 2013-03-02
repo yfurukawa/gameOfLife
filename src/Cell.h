@@ -27,6 +27,11 @@ private:
 	ICell* LowerCell_;
 	ICell* LowerRightCell_;
 
+	bool isCellRightLimit(Field* field);
+	bool isCellLowerLimit(Field* field);
+	bool isCellUpperLimit();
+	bool isCellLeftLimit();
+
 protected:
 	void establshUpperRow(Field* field);
 	void establishMiddleRow(Field* field);

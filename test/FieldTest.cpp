@@ -6,6 +6,7 @@
  */
 
 #include <gtest/gtest.h>
+#include <ios>
 #include "Field.h"
 
 TEST(FieldTest, MaxSize) {

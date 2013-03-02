@@ -124,18 +124,26 @@ void Cell::printMark() {
 	}
 }
 
+bool Cell::isCellUpperLimit() {
+	return yPosition_ == 0;
+}
+
+bool Cell::isCellLeftLimit() {
+	return xPosition_ == 0;
+}
+
 void Cell::establshUpperRow(Field* field) {
-	if(yPosition_ == 0) {
+	if (isCellUpperLimit()) {
 		setUpperLeftCell(new NullCell());
 		setUpperCell(new NullCell());
 		setUpperRightCell(new NullCell());
 	}
-	else if(xPosition_ == 0 ) {
+	else if (isCellLeftLimit()) {
 		setUpperLeftCell(new NullCell());
 		setUpperCell(field->getCell(xPosition_, yPosition_-1));
 		setUpperRightCell(field->getCell(xPosition_+1, yPosition_-1));
 	}
-	else if(xPosition_ == field->getWidth()){
+	else if(isCellRightLimit(field)){
 		setUpperLeftCell(field->getCell(xPosition_-1, yPosition_-1));
 		setUpperCell(field->getCell(xPosition_, yPosition_-1));
 		setUpperRightCell(new NullCell());
@@ -148,11 +156,11 @@ void Cell::establshUpperRow(Field* field) {
 }
 
 void Cell::establishMiddleRow(Field* field) {
-	if(xPosition_ == 0 ) {
+	if(isCellLeftLimit()) {
 		setLeftCell(new NullCell());
 		setRightCell(field->getCell(xPosition_+1, yPosition_));
 	}
-	else if(xPosition_ == field->getWidth()){
+	else if(isCellRightLimit(field)){
 		setLeftCell(field->getCell(xPosition_-1, yPosition_));
 		setRightCell(new NullCell());
 	}
@@ -163,17 +171,17 @@ void Cell::establishMiddleRow(Field* field) {
 }
 
 void Cell::establishLowerRow(Field* field) {
-	if(yPosition_ == field->getHight()) {
+	if(isCellLowerLimit(field)) {
 		setLowerLeftCell(new NullCell());
 		setLowerCell(new NullCell());
 		setLowerRightCell(new NullCell());
 	}
-	else if(xPosition_ == 0 ) {
+	else if(isCellLeftLimit()) {
 		setLowerLeftCell(new NullCell());
 		setLowerCell(field->getCell(xPosition_, yPosition_+1));
 		setLowerRightCell(field->getCell(xPosition_+1, yPosition_+1));
 	}
-	else if(xPosition_ == field->getWidth()){
+	else if(isCellRightLimit(field)){
 		setLowerLeftCell(field->getCell(xPosition_-1, yPosition_+1));
 		setLowerCell(field->getCell(xPosition_, yPosition_+1));
 		setLowerRightCell(new NullCell());
@@ -183,6 +191,14 @@ void Cell::establishLowerRow(Field* field) {
 		setLowerCell(field->getCell(xPosition_, yPosition_+1));
 		setLowerRightCell(field->getCell(xPosition_+1, yPosition_+1));
 	}
+}
+
+bool Cell::isCellRightLimit(Field* field) {
+	return xPosition_ == field->getWidth();
+}
+
+bool Cell::isCellLowerLimit(Field* field) {
+	return yPosition_ == field->getHight();
 }
 
 void Cell::establishRelation(Field* field) {
