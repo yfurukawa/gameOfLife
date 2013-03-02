@@ -13,22 +13,22 @@ Field::Field() : Width_(0), Hight_(0) {
 
 }
 
-Field::Field(int Width, int Hight)  : Width_(Width), Hight_(Hight) {
+Field::Field(int Width, int Hight)  : Width_(Width-1), Hight_(Hight-1) {
 //	cells[Width][Hight];
 }
 
 Field::~Field() {
 	// TODO Auto-generated destructor stub
-	for(int y = 0; y < Hight_; ++y){
-			for(int x = 0; x < Width_; ++x){
+	for(int y = 0; y <= Hight_; ++y){
+			for(int x = 0; x <= Width_; ++x){
 				delete getCell(x, y);
 			}
 		}
 }
 
 void Field::prepairField() {
-	for(int y = 0; y < Hight_; ++y){
-		for(int x = 0; x < Width_; ++x){
+	for(int y = 0; y <= Hight_; ++y){
+		for(int x = 0; x <= Width_; ++x){
 			cells[x][y] = new Cell(x,y);
 		}
 	}
@@ -58,16 +58,16 @@ void Field::initializeField() {
 }
 
 void Field::establishedRelationBwtweenCell() {
-	for(int y = 0; y < Hight_; ++y){
-			for(int x = 0; x < Width_; ++x){
+	for(int y = 0; y <= Hight_; ++y){
+			for(int x = 0; x <= Width_; ++x){
 				getCell(x, y)->establishRelation(this);
 			}
 		}
 }
 
 void Field::printField() {
-	for(int y = 0; y < Hight_; ++y){
-		for(int x = 0; x < Width_; ++x){
+	for(int y = 0; y <= Hight_; ++y){
+		for(int x = 0; x <= Width_; ++x){
 			getCell(x, y)->printMark();
 			std::cout << " ";
 		}
@@ -76,16 +76,16 @@ void Field::printField() {
 }
 
 void Field::decideNextGeneration() {
-	for(int y = 0; y < Hight_; ++y){
-			for(int x = 0; x < Width_; ++x){
+	for(int y = 0; y <= Hight_; ++y){
+			for(int x = 0; x <= Width_; ++x){
 				getCell(x, y)->decideNextGeneration();
 			}
 		}
 }
 
 void Field::updateGeneration() {
-	for(int y = 0; y < Hight_; ++y){
-			for(int x = 0; x < Width_; ++x){
+	for(int y = 0; y <= Hight_; ++y){
+			for(int x = 0; x <= Width_; ++x){
 				getCell(x, y)->updateGeneration();
 			}
 		}

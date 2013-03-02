@@ -135,7 +135,7 @@ void Cell::establshUpperRow(Field* field) {
 		setUpperCell(field->getCell(xPosition_, yPosition_-1));
 		setUpperRightCell(field->getCell(xPosition_+1, yPosition_-1));
 	}
-	else if(xPosition_ == field->getWidth()-1){
+	else if(xPosition_ == field->getWidth()){
 		setUpperLeftCell(field->getCell(xPosition_-1, yPosition_-1));
 		setUpperCell(field->getCell(xPosition_, yPosition_-1));
 		setUpperRightCell(new NullCell());
@@ -152,7 +152,7 @@ void Cell::establishMiddleRow(Field* field) {
 		setLeftCell(new NullCell());
 		setRightCell(field->getCell(xPosition_+1, yPosition_));
 	}
-	else if(xPosition_ == field->getWidth()-1){
+	else if(xPosition_ == field->getWidth()){
 		setLeftCell(field->getCell(xPosition_-1, yPosition_));
 		setRightCell(new NullCell());
 	}
@@ -163,7 +163,7 @@ void Cell::establishMiddleRow(Field* field) {
 }
 
 void Cell::establishLowerRow(Field* field) {
-	if(yPosition_ == field->getHight()-1) {
+	if(yPosition_ == field->getHight()) {
 		setLowerLeftCell(new NullCell());
 		setLowerCell(new NullCell());
 		setLowerRightCell(new NullCell());
@@ -173,7 +173,7 @@ void Cell::establishLowerRow(Field* field) {
 		setLowerCell(field->getCell(xPosition_, yPosition_+1));
 		setLowerRightCell(field->getCell(xPosition_+1, yPosition_+1));
 	}
-	else if(xPosition_ == field->getWidth()-1){
+	else if(xPosition_ == field->getWidth()){
 		setLowerLeftCell(field->getCell(xPosition_-1, yPosition_+1));
 		setLowerCell(field->getCell(xPosition_, yPosition_+1));
 		setLowerRightCell(new NullCell());

@@ -10,9 +10,9 @@
 
 TEST(FieldTest, MaxSize) {
 	Field* field;
-	field = new Field(1,2);
-	EXPECT_EQ(1, field->getWidth());
-	EXPECT_EQ(2, field->getHight());
+	field = new Field(10,20);
+	EXPECT_EQ(9, field->getWidth());
+	EXPECT_EQ(19, field->getHight());
 }
 
 TEST(FieldTest, fillInCellsToField){
