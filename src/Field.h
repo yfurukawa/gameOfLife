@@ -29,6 +29,7 @@ public:
 		return Width_;
 	}
 	void prepairField();
+	void initializeField();
 	Cell* getCell(int xPosition, int yPosition);
 	void printField();
 };

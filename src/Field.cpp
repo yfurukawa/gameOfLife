@@ -33,6 +33,24 @@ Cell* Field::getCell(int xPosition, int yPosition) {
 	return cells[xPosition][yPosition];
 }
 
+void Field::initializeField() {
+	int numberOfAliveCell;
+	int xPosition;
+	int yPosition;
+
+	std::cout << "初期状態で生きているセルの数 : ";
+	std::cin >> numberOfAliveCell;
+
+	for(int i = 0; i < numberOfAliveCell; ++i){
+		std::cout << "生きているセルの場所（x） : ";
+		std::cin >> xPosition;
+		std::cout << "生きているセルの場所（y） : ";
+		std::cin >> yPosition;
+		getCell(xPosition, yPosition)->setAlive();
+	}
+
+}
+
 void Field::printField() {
 	for(int y = 0; y <= Hight_; ++y){
 		for(int x = 0; x <= Width_; ++x){
