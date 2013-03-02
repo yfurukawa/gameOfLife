@@ -22,13 +22,13 @@ TEST(FieldTest, fillInCellsToField){
 	EXPECT_EQ(false, field->getCell(0,0)->isAlive());
 }
 
-TEST(Field, IsAliveWhenCellSetAliveInInitialize) {
-	Field* field;
-	field = new Field(10,10);
-	field->prepairField();
-	field->initializeField();
-	EXPECT_EQ(true, field->getCell(0,0)->isAlive());
-	field->printField();
-}
+//TEST(Field, IsAliveWhenCellSetAliveInInitialize) {
+//	Field* field;
+//	field = new Field(10,10);
+//	field->prepairField();
+//	field->initializeField();
+//	EXPECT_EQ(true, field->getCell(0,0)->isAlive());
+//	field->printField();
+//}
 
 
