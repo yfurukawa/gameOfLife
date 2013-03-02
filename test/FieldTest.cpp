@@ -18,7 +18,13 @@ TEST(FieldTest, MaxSize) {
 TEST(FieldTest, fillInCellsToField){
 	Field* field;
 	field = new Field(10,10);
-	field->initializeField();
-	EXPECT_EQ(true, field->getCell(0,0)->isAlive());
+	field->prepairField();
+	EXPECT_EQ(false, field->getCell(0,0)->isAlive());
 }
 
+TEST(Field, printFirstGeneration) {
+	Field* field;
+	field = new Field(10,10);
+	field->prepairField();
+	field->printField();
+}

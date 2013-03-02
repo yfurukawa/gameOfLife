@@ -28,8 +28,9 @@ public:
 	int getWidth() const {
 		return Width_;
 	}
-	void initializeField();
+	void prepairField();
 	Cell* getCell(int xPosition, int yPosition);
+	void printField();
 };
 
 #endif /* FIELD_H_ */

@@ -5,6 +5,7 @@
  *      Author: furukawayoshihiro
  */
 
+#include <iostream>
 #include "Field.h"
 
 Field::Field() : Width_(0), Hight_(0) {
@@ -20,9 +21,9 @@ Field::~Field() {
 	// TODO Auto-generated destructor stub
 }
 
-void Field::initializeField() {
-	for(int x = 0; x <= Width_; ++x){
-		for(int y = 0; y <= Hight_; ++y){
+void Field::prepairField() {
+	for(int y = 0; y <= Hight_; ++y){
+		for(int x = 0; x <= Width_; ++x){
 			cells[x][y] = new Cell();
 		}
 	}
@@ -30,4 +31,14 @@ void Field::initializeField() {
 
 Cell* Field::getCell(int xPosition, int yPosition) {
 	return cells[xPosition][yPosition];
+}
+
+void Field::printField() {
+	for(int y = 0; y <= Hight_; ++y){
+		for(int x = 0; x <= Width_; ++x){
+			getCell(x, y)->printMark();
+			std::cout << " ";
+		}
+		std::cout << std::endl;
+	}
 }
