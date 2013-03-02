@@ -7,19 +7,18 @@
 
 #include <gtest/gtest.h>
 #include "CellTest.h"
-#include "Cell.h"
-#include "nullCell.h"
+#include "NullCell.h"
 
 
 void CellTest::SetUp() {
-	cell = new Cell();
-	neiborhoodCell = new Cell();
-	nullCell = new Cell();
+	sut = new CellMock();
+	neiborhoodCell = new CellMock();
+	nullCell = new NullCell();
 }
 
 void CellTest::TearDown() {
-	delete cell;
-	cell = NULL;
+	delete sut;
+	sut = NULL;
 
 	delete neiborhoodCell;
 	neiborhoodCell = NULL;
@@ -29,135 +28,135 @@ void CellTest::TearDown() {
 }
 
 TEST_F(CellTest, initialize){
-	EXPECT_EQ(false, cell->isAlive());
+	EXPECT_EQ(false, sut->isAlive());
 }
 
 TEST_F(CellTest, initialize_alive) {
-	cell->setAlive();
-	EXPECT_EQ(true, cell->isAlive());
+	sut->setAlive();
+	EXPECT_EQ(true, sut->isAlive());
 }
 
 TEST_F(CellTest, checkAliveNeiborhoodIsZero) {
-	cell->setUpperLeftCell(neiborhoodCell);
-	cell->setUpperCell(neiborhoodCell);
-	cell->setUpperRightCell(neiborhoodCell);
-	cell->setLeftCell(neiborhoodCell);
-	cell->setRightCell(neiborhoodCell);
-	cell->setLowerLeftCell(neiborhoodCell);
-	cell->setLowerCell(neiborhoodCell);
-	cell->setLowerRightCell(neiborhoodCell);
-	EXPECT_EQ(0, cell->checkNumberOfNeiborhoodIsAlive());
+	sut->setUpperLeftCell(neiborhoodCell);
+	sut->setUpperCell(neiborhoodCell);
+	sut->setUpperRightCell(neiborhoodCell);
+	sut->setLeftCell(neiborhoodCell);
+	sut->setRightCell(neiborhoodCell);
+	sut->setLowerLeftCell(neiborhoodCell);
+	sut->setLowerCell(neiborhoodCell);
+	sut->setLowerRightCell(neiborhoodCell);
+	EXPECT_EQ(0, sut->checkNumberOfNeiborhoodIsAlive());
 }
 
 TEST_F(CellTest, checkAliveNeiborhoodIsOne) {
 	prepairOneAliveCell();
-	EXPECT_EQ(1, cell->checkNumberOfNeiborhoodIsAlive());
+	EXPECT_EQ(1, sut->checkNumberOfNeiborhoodIsAlive());
 }
 
 TEST_F(CellTest, checkAliveNeiborhoodIsTwo) {
 	prepairTwoAliveCells();
-	EXPECT_EQ(2, cell->checkNumberOfNeiborhoodIsAlive());
+	EXPECT_EQ(2, sut->checkNumberOfNeiborhoodIsAlive());
 }
 
 TEST_F(CellTest, nextGenerationIsBoned) {
 	prepairThreeAliveCells();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
-	EXPECT_EQ(true, cell->isAlive());
+	sut->decideNextGeneration();
+	sut->updateGeneration();
+	EXPECT_EQ(true, sut->isAlive());
 }
 
 TEST_F(CellTest, nextGenertionIsAlive) {
 	prepairTwoAliveCells();
-	cell->setAlive();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
-	EXPECT_EQ(true, cell->isAlive());
+	sut->setAlive();
+	sut->decideNextGeneration();
+	sut->updateGeneration();
+	EXPECT_EQ(true, sut->isAlive());
 }
 
 TEST_F(CellTest, nextGenertionIsAliveEther) {
 	prepairThreeAliveCells();
-	cell->setAlive();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
-	EXPECT_EQ(true, cell->isAlive());
+	sut->setAlive();
+	sut->decideNextGeneration();
+	sut->updateGeneration();
+	EXPECT_EQ(true, sut->isAlive());
 }
 
 TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
 	prepairOneAliveCell();
-	cell->setAlive();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
+	sut->setAlive();
+	sut->decideNextGeneration();
+	sut->updateGeneration();
+	EXPECT_EQ(false, sut->isAlive());
 }
 
 TEST_F(CellTest, AliveToDieDueToDepopulation) {
 	prepairTwoAliveCells();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
+	sut->decideNextGeneration();
+	sut->updateGeneration();
 
 	prepairOneAliveCell();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
+	sut->decideNextGeneration();
+	sut->updateGeneration();
+	EXPECT_EQ(false, sut->isAlive());
 }
 
 TEST_F(CellTest, AliveToDieDueToOverpopulation) {
 	prepairTwoAliveCells();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
+	sut->decideNextGeneration();
+	sut->updateGeneration();
 	prepairFourAliveCells();
-	cell->decideNextGeneration();
-	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
+	sut->decideNextGeneration();
+	sut->updateGeneration();
+	EXPECT_EQ(false, sut->isAlive());
 }
 
 void CellTest::prepairOneAliveCell() {
-	cell->setUpperLeftCell(nullCell);
-	cell->setUpperCell(nullCell);
-	cell->setUpperRightCell(nullCell);
-	cell->setLeftCell(nullCell);
-	cell->setRightCell(nullCell);
-	cell->setLowerLeftCell(nullCell);
-	cell->setLowerCell(nullCell);
+	sut->setUpperLeftCell(nullCell);
+	sut->setUpperCell(nullCell);
+	sut->setUpperRightCell(nullCell);
+	sut->setLeftCell(nullCell);
+	sut->setRightCell(nullCell);
+	sut->setLowerLeftCell(nullCell);
+	sut->setLowerCell(nullCell);
 	neiborhoodCell->setAlive();
-	cell->setLowerRightCell(neiborhoodCell);
+	sut->setLowerRightCell(neiborhoodCell);
 }
 
 void CellTest::prepairTwoAliveCells() {
-	cell->setUpperLeftCell(nullCell);
-	cell->setUpperCell(nullCell);
-	cell->setUpperRightCell(nullCell);
-	cell->setLeftCell(nullCell);
-	cell->setRightCell(nullCell);
-	cell->setLowerLeftCell(nullCell);
+	sut->setUpperLeftCell(nullCell);
+	sut->setUpperCell(nullCell);
+	sut->setUpperRightCell(nullCell);
+	sut->setLeftCell(nullCell);
+	sut->setRightCell(nullCell);
+	sut->setLowerLeftCell(nullCell);
 
 	neiborhoodCell->setAlive();
-	cell->setLowerCell(neiborhoodCell);
-	cell->setLowerRightCell(neiborhoodCell);
+	sut->setLowerCell(neiborhoodCell);
+	sut->setLowerRightCell(neiborhoodCell);
 }
 
 void CellTest::prepairThreeAliveCells() {
-	cell->setUpperLeftCell(nullCell);
-	cell->setUpperCell(nullCell);
-	cell->setUpperRightCell(nullCell);
-	cell->setLeftCell(nullCell);
-	cell->setRightCell(nullCell);
+	sut->setUpperLeftCell(nullCell);
+	sut->setUpperCell(nullCell);
+	sut->setUpperRightCell(nullCell);
+	sut->setLeftCell(nullCell);
+	sut->setRightCell(nullCell);
 
 	neiborhoodCell->setAlive();
-	cell->setLowerLeftCell(neiborhoodCell);
-	cell->setLowerCell(neiborhoodCell);
-	cell->setLowerRightCell(neiborhoodCell);
+	sut->setLowerLeftCell(neiborhoodCell);
+	sut->setLowerCell(neiborhoodCell);
+	sut->setLowerRightCell(neiborhoodCell);
 }
 
 void CellTest::prepairFourAliveCells() {
-	cell->setUpperLeftCell(nullCell);
-	cell->setUpperCell(nullCell);
-	cell->setUpperRightCell(nullCell);
-	cell->setLeftCell(nullCell);
+	sut->setUpperLeftCell(nullCell);
+	sut->setUpperCell(nullCell);
+	sut->setUpperRightCell(nullCell);
+	sut->setLeftCell(nullCell);
 
 	neiborhoodCell->setAlive();
-	cell->setRightCell(neiborhoodCell);
-	cell->setLowerLeftCell(neiborhoodCell);
-	cell->setLowerCell(neiborhoodCell);
-	cell->setLowerRightCell(neiborhoodCell);
+	sut->setRightCell(neiborhoodCell);
+	sut->setLowerLeftCell(neiborhoodCell);
+	sut->setLowerCell(neiborhoodCell);
+	sut->setLowerRightCell(neiborhoodCell);
 }

@@ -6,8 +6,8 @@ LIB =
 OPT = -O0 -g3 -Wall -fmessage-length=0
 
 TARGET = gameOfLife
-SRC= Cell.cpp NullCell.cpp Field.cpp
-OBJ= Cell.o NullCell.o Field.o
+SRC= Cell.cpp NullCell.cpp Field.cpp ICell.cpp
+OBJ= Cell.o NullCell.o Field.o ICell.o
 
 $(TARGET): $(OBJ) main.o 
 	$(CC) $(INCLUDE) $(LIB_DIR) $(OPT) -o $(TARGET) $(OBJ) main.o
@@ -23,9 +23,9 @@ TEST_TARGET = gameOfLifeTest
 TEST_INCLUDE = -I../test -I.
 TEST_LIB = -lgtest
 TEST_OPT = -O0 -g3 -Wall -fmessage-length=0 -pg -fprofile-arcs -ftest-coverage
-TEST_SRC = ../test/testMain.cpp ../test/CellTest.cpp ../test/FieldTest.cpp
+TEST_SRC = ../test/testMain.cpp ../test/CellTest.cpp ../test/FieldTest.cpp ../test/CellMock.cpp
 
-TEST_OBJ = testMain.o CellTest.o FieldTest.o
+TEST_OBJ = testMain.o CellTest.o FieldTest.o CellMock.o
 	
 test: $(OBJ) $(TEST_OBJ)
 	$(CC) $(INCLUDE) $(TEST_INCLUDE) $(LIB_DIR) $(TEST_OPT) -o $(TEST_TARGET) $(OBJ) $(TEST_OBJ) $(LIB) $(TEST_LIB)

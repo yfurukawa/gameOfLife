@@ -8,13 +8,18 @@
 #ifndef NULLCELL_H_
 #define NULLCELL_H_
 
-#include "Cell.h"
+#include "ICell.h"
 
-class NullCell: public Cell {
+class NullCell: public ICell {
 public:
 	NullCell();
 	virtual ~NullCell();
 	virtual bool isAlive() {return false;};
+	virtual void setAlive(){};
+	virtual void updateGeneration(){};
+	virtual void decideNextGeneration(){};
+	virtual void printMark(){};
+	virtual void establishRelation(Field* field){};;
 };
 
 #endif /* NULLCELL_H_ */

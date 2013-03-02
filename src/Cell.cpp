@@ -29,35 +29,35 @@ Cell::~Cell() {
 	// TODO Auto-generated destructor stub
 }
 
-void Cell::setLeftCell(Cell* leftCell) {
+void Cell::setLeftCell(ICell* leftCell) {
 	LeftCell_ = leftCell;
 }
 
-void Cell::setLowerCell(Cell* lowerCell) {
+void Cell::setLowerCell(ICell* lowerCell) {
 	LowerCell_ = lowerCell;
 }
 
-void Cell::setLowerLeftCell(Cell* lowerLeftCell) {
+void Cell::setLowerLeftCell(ICell* lowerLeftCell) {
 	LowerLeftCell_ = lowerLeftCell;
 }
 
-void Cell::setLowerRightCell(Cell* lowerRightCell) {
+void Cell::setLowerRightCell(ICell* lowerRightCell) {
 	LowerRightCell_ = lowerRightCell;
 }
 
-void Cell::setRightCell(Cell* rightCell) {
+void Cell::setRightCell(ICell* rightCell) {
 	RightCell_ = rightCell;
 }
 
-void Cell::setUpperCell(Cell* upperCell) {
+void Cell::setUpperCell(ICell* upperCell) {
 	UpperCell_ = upperCell;
 }
 
-void Cell::setUpperLeftCell(Cell* upperLeftCell) {
+void Cell::setUpperLeftCell(ICell* upperLeftCell) {
 	UpperLeftCell_ = upperLeftCell;
 }
 
-void Cell::setUpperRightCell(Cell* upperRightCell) {
+void Cell::setUpperRightCell(ICell* upperRightCell) {
 	UpperRightCell_ = upperRightCell;
 }
 
@@ -67,28 +67,28 @@ bool Cell::isAlive() {
 
 int Cell::checkNumberOfNeiborhoodIsAlive() {
 	int count(0);
-	if(UpperLeftCell_->isAlive_) {
+	if(UpperLeftCell_->isAlive()) {
 		++count;
 	}
-	if(UpperCell_->isAlive_) {
+	if(UpperCell_->isAlive()) {
 		++count;
 	}
-	if(UpperRightCell_->isAlive_) {
+	if(UpperRightCell_->isAlive()) {
 		++count;
 	}
-	if(LeftCell_->isAlive_) {
+	if(LeftCell_->isAlive()) {
 		++count;
 	}
-	if(RightCell_->isAlive_) {
+	if(RightCell_->isAlive()) {
 		++count;
 	}
-	if(LowerLeftCell_->isAlive_) {
+	if(LowerLeftCell_->isAlive()) {
 		++count;
 	}
-	if(LowerCell_->isAlive_) {
+	if(LowerCell_->isAlive()) {
 		++count;
 	}
-	if(LowerRightCell_->isAlive_) {
+	if(LowerRightCell_->isAlive()) {
 		++count;
 	}
 

@@ -10,17 +10,17 @@
 
 #include <iostream>
 #include <gtest/gtest.h>
-#include "../src/Cell.h"
+#include "CellMock.h"
 
 class CellTest : public ::testing::Test {
 protected:
-	Cell* cell;
-	Cell* neiborhoodCell;
-	Cell* nullCell;
+	CellMock* sut;
+	CellMock* neiborhoodCell;
+	ICell* nullCell;
 protected:
 	virtual void SetUp();
 	virtual void TearDown();
-	CellTest() : cell(NULL), neiborhoodCell(NULL), nullCell(NULL) {};
+	CellTest() : sut(NULL), neiborhoodCell(NULL), nullCell(NULL) {};
 	virtual ~CellTest() {};
 	void prepairOneAliveCell();
 	void prepairTwoAliveCells();
