@@ -16,6 +16,10 @@ private:
 	int Hight_;
 	Cell* cells[25][25];
 
+	void establishedRelationBwtweenCell();
+	void decideNextGeneration();
+	void updateGeneration();
+	void printField();
 public:
 	Field();
 	Field(int Width, int Hight);
@@ -31,7 +35,7 @@ public:
 	void prepairField();
 	void initializeField();
 	Cell* getCell(int xPosition, int yPosition);
-	void printField();
+	void run();
 };
 
 #endif /* FIELD_H_ */

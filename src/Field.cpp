@@ -22,11 +22,12 @@ Field::~Field() {
 }
 
 void Field::prepairField() {
-	for(int y = 0; y <= Hight_; ++y){
-		for(int x = 0; x <= Width_; ++x){
-			cells[x][y] = new Cell();
+	for(int y = 0; y < Hight_; ++y){
+		for(int x = 0; x < Width_; ++x){
+			cells[x][y] = new Cell(x,y);
 		}
 	}
+	establishedRelationBwtweenCell();
 }
 
 Cell* Field::getCell(int xPosition, int yPosition) {
@@ -48,15 +49,49 @@ void Field::initializeField() {
 		std::cin >> yPosition;
 		getCell(xPosition, yPosition)->setAlive();
 	}
+	printField();
+}
 
+void Field::establishedRelationBwtweenCell() {
+	for(int y = 0; y < Hight_; ++y){
+			for(int x = 0; x < Width_; ++x){
+				getCell(x, y)->establishRelation(this);
+			}
+		}
 }
 
 void Field::printField() {
-	for(int y = 0; y <= Hight_; ++y){
-		for(int x = 0; x <= Width_; ++x){
+	for(int y = 0; y < Hight_; ++y){
+		for(int x = 0; x < Width_; ++x){
 			getCell(x, y)->printMark();
 			std::cout << " ";
 		}
 		std::cout << std::endl;
+	}
+}
+
+void Field::decideNextGeneration() {
+	for(int y = 0; y < Hight_; ++y){
+			for(int x = 0; x < Width_; ++x){
+				getCell(x, y)->decideNextGeneration();
+			}
+		}
+}
+
+void Field::updateGeneration() {
+	for(int y = 0; y < Hight_; ++y){
+			for(int x = 0; x < Width_; ++x){
+				getCell(x, y)->updateGeneration();
+			}
+		}
+}
+
+void Field::run() {
+	while(1){
+		system("clear");
+		decideNextGeneration();
+		updateGeneration();
+		printField();
+		sleep(1);
 	}
 }

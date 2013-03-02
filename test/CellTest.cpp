@@ -60,17 +60,18 @@ TEST_F(CellTest, checkAliveNeiborhoodIsTwo) {
 }
 
 TEST_F(CellTest, nextGenerationIsBoned) {
-	prepairTwoAliveCells();
+	prepairThreeAliveCells();
 	cell->decideNextGeneration();
 	cell->updateGeneration();
 	EXPECT_EQ(true, cell->isAlive());
 }
 
-TEST_F(CellTest, nextGenertionIsNotAlive) {
-	prepairThreeAliveCells();
+TEST_F(CellTest, nextGenertionIsAlive) {
+	prepairTwoAliveCells();
+	cell->setAlive();
 	cell->decideNextGeneration();
 	cell->updateGeneration();
-	EXPECT_EQ(false, cell->isAlive());
+	EXPECT_EQ(true, cell->isAlive());
 }
 
 TEST_F(CellTest, nextGenertionIsAliveEther) {

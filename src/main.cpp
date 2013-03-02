@@ -6,19 +6,14 @@
  */
 
 #include <iostream>
-#include "Cell.h"
+#include "Field.h"
 
 int main(int argc, char** argv) {
-	Cell* cell1;
-	Cell* cell2;
+	Field* field;
+	field = new Field(20, 20);
 
-	cell1 = new Cell();
-	cell2 = new Cell();
-
-	std::cout << cell1 << std::endl;
-	std::cout << cell2 << std::endl;
-
-	delete cell1;
-	delete cell2;
+	field->prepairField();
+	field->initializeField();
+	field->run();
 }
 
