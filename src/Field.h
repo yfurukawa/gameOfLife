@@ -14,6 +14,7 @@ class Field {
 private:
 	int Width_;
 	int Hight_;
+	Cell* cells[25][25];
 
 public:
 	Field();
@@ -27,6 +28,8 @@ public:
 	int getWidth() const {
 		return Width_;
 	}
+	void initializeField();
+	Cell* getCell(int xPosition, int yPosition);
 };
 
 #endif /* FIELD_H_ */

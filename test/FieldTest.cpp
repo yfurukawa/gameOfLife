@@ -15,5 +15,10 @@ TEST(FieldTest, MaxSize) {
 	EXPECT_EQ(2, field->getHight());
 }
 
-
+TEST(FieldTest, fillInCellsToField){
+	Field* field;
+	field = new Field(10,10);
+	field->initializeField();
+	EXPECT_EQ(true, field->getCell(0,0)->isAlive());
+}
 
