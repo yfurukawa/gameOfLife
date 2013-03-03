@@ -29,14 +29,14 @@ Field::~Field() {
 void Field::prepairField() {
 	for(int y = 0; y <= Hight_; ++y){
 		for(int x = 0; x <= Width_; ++x){
-			cells[x][y] = new Cell(x,y);
+			cellOfField_.push_back(new Cell(x, y));
 		}
 	}
 	establishedRelationBwtweenCell();
 }
 
 Cell* Field::getCell(int xPosition, int yPosition) {
-	return cells[xPosition][yPosition];
+	return cellOfField_.at(calculateContainerPositionFromXY(xPosition, yPosition));
 }
 
 void Field::initializeField() {
@@ -89,6 +89,10 @@ void Field::updateGeneration() {
 				getCell(x, y)->updateGeneration();
 			}
 		}
+}
+
+int Field::calculateContainerPositionFromXY(int xPosition, int yPosition) {
+	return (xPosition)+(yPosition*(Width_+1));
 }
 
 void Field::run() {

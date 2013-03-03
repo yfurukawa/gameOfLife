@@ -8,18 +8,22 @@
 #ifndef FIELD_H_
 #define FIELD_H_
 
+#include <vector>
 #include "Cell.h"
 
 class Field {
-private:
+
+public:
 	int Width_;
 	int Hight_;
-	Cell* cells[25][25];
+	std::vector<Cell*> cellOfField_;
 
 	void establishedRelationBwtweenCell();
 	void decideNextGeneration();
 	void updateGeneration();
 	void printField();
+	int calculateContainerPositionFromXY(int xPosition, int yPosition);
+
 public:
 	Field();
 	Field(int Width, int Hight);
