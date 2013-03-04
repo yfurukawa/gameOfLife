@@ -23,6 +23,7 @@ public:
 	void setUpperLeftCell(ICell* upperLeftCell);
 	void setUpperRightCell(ICell* upperRightCell);
 	int checkNumberOfNeiborhoodIsAlive();
+	void printMark();
 };
 
 #endif /* CELLMOCK_H_ */

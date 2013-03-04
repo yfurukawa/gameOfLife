@@ -5,6 +5,8 @@
  *      Author: furukawayoshihiro
  */
 
+#include <iostream>
+#include <fstream>
 #include "CellMock.h"
 
 CellMock::CellMock() {
@@ -50,4 +52,12 @@ void CellMock::setUpperRightCell(ICell* upperRightCell) {
 
 int CellMock::checkNumberOfNeiborhoodIsAlive() {
 	return Cell::checkNumberOfNeiborhoodIsAlive();
+}
+
+void CellMock::printMark() {
+    std::ofstream ofs("output.txt");
+    std::streambuf* oldrdbuf = std::cout.rdbuf(ofs.rdbuf());
+    Cell::printMark();
+
+    std::cout.rdbuf(oldrdbuf);
 }
