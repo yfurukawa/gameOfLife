@@ -9,12 +9,12 @@
 #include "NullCell.h"
 #include "Field.h"
 
-Cell::Cell() : xPosition_(0), yPosition_(0), isAlive_(false), candidateAlive_(false), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
+Cell::Cell() : xPosition_(0), yPosition_(0), isAlive_("-"), candidateAlive_("-"), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
 		LeftCell_(NULL), RightCell_(NULL), LowerLeftCell_(NULL), LowerCell_(NULL), LowerRightCell_(NULL) {
 	// TODO Auto-generated constructor stub
 }
 
-Cell::Cell(int xPosition, int yPosition) : xPosition_(xPosition), yPosition_(yPosition), isAlive_(false), candidateAlive_(false), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
+Cell::Cell(int xPosition, int yPosition) : xPosition_(xPosition), yPosition_(yPosition), isAlive_("-"), candidateAlive_("-"), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
 		LeftCell_(NULL), RightCell_(NULL), LowerLeftCell_(NULL), LowerCell_(NULL), LowerRightCell_(NULL) {
 	// TODO Auto-generated constructor stub
 	if(xPosition < 0) {
@@ -62,7 +62,7 @@ void Cell::setUpperRightCell(ICell* upperRightCell) {
 }
 
 bool Cell::isAlive() {
-	return isAlive_;
+	return isAlive_ == "*";
 }
 
 int Cell::checkNumberOfNeiborhoodIsAlive() {
@@ -102,26 +102,21 @@ void Cell::updateGeneration() {
 void Cell::decideNextGeneration() {
 	int numberOfAliveCell = checkNumberOfNeiborhoodIsAlive();
 	if(numberOfAliveCell == 1) {
-		candidateAlive_ = false;
+		candidateAlive_ = "-";
 	}
 	else if(numberOfAliveCell == 2 && isAlive()) {
-		candidateAlive_ = true;
+		candidateAlive_ = "*";
 	}
 	else if (numberOfAliveCell == 3) {
-		candidateAlive_ = true;
+		candidateAlive_ = "*";
 	}
 	else {
-		candidateAlive_ = false;
+		candidateAlive_ = "-";
 	}
 }
 
 void Cell::printMark() {
-	if(isAlive()) {
-		std::cout << "*";
-	}
-	else {
-		std::cout << "-";
-	}
+	std::cout << isAlive_;
 }
 
 bool Cell::isCellUpperLimit() {

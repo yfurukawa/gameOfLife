@@ -8,6 +8,7 @@
 #ifndef CELL_H_
 #define CELL_H_
 
+#include <string>
 #include "ICell.h"
 
 class Field;
@@ -16,8 +17,8 @@ class Cell : public ICell{
 private:
 	int xPosition_;
 	int yPosition_;
-	bool isAlive_;
-	bool candidateAlive_;
+	std::string isAlive_;
+	std::string candidateAlive_;
 	ICell* UpperLeftCell_;
 	ICell* UpperCell_;
 	ICell* UpperRightCell_;
@@ -52,7 +53,7 @@ public:
 	virtual ~Cell();
 	virtual bool isAlive();
 	void setAlive() {
-		isAlive_ = true;
+		isAlive_ = "*";
 	}
 
 	void updateGeneration();
