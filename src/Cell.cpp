@@ -14,15 +14,10 @@ Cell::Cell() : xPosition_(0), yPosition_(0), isAlive_("-"), candidateAlive_("-")
 	// TODO Auto-generated constructor stub
 }
 
-Cell::Cell(int xPosition, int yPosition) : xPosition_(xPosition), yPosition_(yPosition), isAlive_("-"), candidateAlive_("-"), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
+Cell::Cell(int xPosition, int yPosition) : xPosition_(xPosition < 0 ? 0 : xPosition), yPosition_(yPosition < 0 ? 0 : yPosition), isAlive_("-"), candidateAlive_("-"), UpperLeftCell_(NULL), UpperCell_(NULL), UpperRightCell_(NULL),
 		LeftCell_(NULL), RightCell_(NULL), LowerLeftCell_(NULL), LowerCell_(NULL), LowerRightCell_(NULL) {
 	// TODO Auto-generated constructor stub
-	if(xPosition < 0) {
-		xPosition_ = 0;
-	}
-	if(yPosition < 0) {
-		yPosition_ = 0;
-	}
+
 }
 
 Cell::~Cell() {
@@ -86,7 +81,7 @@ void Cell::updateGeneration() {
 
 void Cell::decideNextGeneration() {
 	int numberOfAliveCell = checkNumberOfNeiborhoodIsAlive();
-	if(numberOfAliveCell == 1) {
+	if (numberOfAliveCell == 1) {
 		candidateAlive_ = "-";
 	}
 	else if(numberOfAliveCell == 2 && isAlive()) {
