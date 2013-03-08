@@ -28,12 +28,12 @@ void CellTest::TearDown() {
 }
 
 TEST_F(CellTest, initialize){
-	EXPECT_EQ(false, sut->isAlive());
+	EXPECT_EQ(0, sut->isAlive());
 }
 
 TEST_F(CellTest, initialize_alive) {
 	sut->setAlive();
-	EXPECT_EQ(true, sut->isAlive());
+	EXPECT_EQ(1, sut->isAlive());
 }
 
 TEST_F(CellTest, checkAliveNeiborhoodIsZero) {
@@ -62,7 +62,7 @@ TEST_F(CellTest, nextGenerationIsBoned) {
 	prepairThreeAliveCells();
 	sut->decideNextGeneration();
 	sut->updateGeneration();
-	EXPECT_EQ(true, sut->isAlive());
+	EXPECT_EQ(1, sut->isAlive());
 }
 
 TEST_F(CellTest, nextGenertionIsAlive) {
@@ -78,7 +78,7 @@ TEST_F(CellTest, nextGenertionIsAliveEther) {
 	sut->setAlive();
 	sut->decideNextGeneration();
 	sut->updateGeneration();
-	EXPECT_EQ(true, sut->isAlive());
+	EXPECT_EQ(1, sut->isAlive());
 }
 
 TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
@@ -86,7 +86,7 @@ TEST_F(CellTest, nextGenerationIsDieDueToDepopulation) {
 	sut->setAlive();
 	sut->decideNextGeneration();
 	sut->updateGeneration();
-	EXPECT_EQ(false, sut->isAlive());
+	EXPECT_EQ(0, sut->isAlive());
 }
 
 TEST_F(CellTest, AliveToDieDueToDepopulation) {
@@ -97,7 +97,7 @@ TEST_F(CellTest, AliveToDieDueToDepopulation) {
 	prepairOneAliveCell();
 	sut->decideNextGeneration();
 	sut->updateGeneration();
-	EXPECT_EQ(false, sut->isAlive());
+	EXPECT_EQ(0, sut->isAlive());
 }
 
 TEST_F(CellTest, AliveToDieDueToOverpopulation) {
@@ -107,7 +107,7 @@ TEST_F(CellTest, AliveToDieDueToOverpopulation) {
 	prepairFourAliveCells();
 	sut->decideNextGeneration();
 	sut->updateGeneration();
-	EXPECT_EQ(false, sut->isAlive());
+	EXPECT_EQ(0, sut->isAlive());
 }
 
 void CellTest::prepairOneAliveCell() {

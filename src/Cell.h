@@ -51,7 +51,7 @@ public:
 	Cell();
 	Cell(int xPosition, int yPosition);
 	virtual ~Cell();
-	virtual bool isAlive();
+	virtual int isAlive();
 	void setAlive() {
 		isAlive_ = "*";
 	}

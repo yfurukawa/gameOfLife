@@ -14,7 +14,7 @@ class NullCell: public ICell {
 public:
 	NullCell();
 	virtual ~NullCell();
-	virtual bool isAlive() {return false;};
+	virtual int isAlive() {return 0;};
 	virtual void setAlive(){};
 	virtual void updateGeneration(){};
 	virtual void decideNextGeneration(){};

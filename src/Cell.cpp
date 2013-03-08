@@ -61,36 +61,21 @@ void Cell::setUpperRightCell(ICell* upperRightCell) {
 	UpperRightCell_ = upperRightCell;
 }
 
-bool Cell::isAlive() {
-	return isAlive_ == "*";
+int Cell::isAlive() {
+	return (isAlive_ == "*") ? 1 : 0;
 }
 
 int Cell::checkNumberOfNeiborhoodIsAlive() {
 	int count(0);
-	if(UpperLeftCell_->isAlive()) {
-		++count;
-	}
-	if(UpperCell_->isAlive()) {
-		++count;
-	}
-	if(UpperRightCell_->isAlive()) {
-		++count;
-	}
-	if(LeftCell_->isAlive()) {
-		++count;
-	}
-	if(RightCell_->isAlive()) {
-		++count;
-	}
-	if(LowerLeftCell_->isAlive()) {
-		++count;
-	}
-	if(LowerCell_->isAlive()) {
-		++count;
-	}
-	if(LowerRightCell_->isAlive()) {
-		++count;
-	}
+
+	count += UpperLeftCell_->isAlive();
+	count += UpperCell_->isAlive();
+	count += UpperRightCell_->isAlive();
+	count += LeftCell_->isAlive();
+	count += RightCell_->isAlive();
+	count += LowerLeftCell_->isAlive();
+	count += LowerCell_->isAlive();
+	count += LowerRightCell_->isAlive();
 
 	return count;
 }

@@ -14,7 +14,7 @@ class ICell {
 public:
 	ICell();
 	virtual ~ICell();
-	virtual bool isAlive() = 0;
+	virtual int isAlive() = 0;
 	virtual void setAlive() = 0;
 	virtual void updateGeneration() = 0;
 	virtual void decideNextGeneration() = 0;
