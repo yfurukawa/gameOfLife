@@ -56,37 +56,33 @@ void Field::initializeField() {
 }
 
 void Field::establishedRelationBwtweenCell() {
-	for(int y = 0; y <= Hight_; ++y){
-			for(int x = 0; x <= Width_; ++x){
-				getCell(x, y)->establishRelation(this);
-			}
-		}
+	for(cellIterator_ = cellOfField_.begin(); cellIterator_ != cellOfField_.end(); ++cellIterator_) {
+		(*cellIterator_)->establishRelation(this);
+	}
 }
 
 void Field::printField() {
-	for(int y = 0; y <= Hight_; ++y){
-		for(int x = 0; x <= Width_; ++x){
-			getCell(x, y)->printMark();
-			std::cout << " ";
+	int width(0);
+	for(cellIterator_ = cellOfField_.begin(); cellIterator_ != cellOfField_.end(); ++cellIterator_) {
+		(*cellIterator_)->printMark();
+		std::cout << " ";
+		if(width++ == Width_ ) {
+			std::cout << std::endl;
+			width = 0;
 		}
-		std::cout << std::endl;
 	}
 }
 
 void Field::decideNextGeneration() {
-	for(int y = 0; y <= Hight_; ++y){
-			for(int x = 0; x <= Width_; ++x){
-				getCell(x, y)->decideNextGeneration();
-			}
-		}
+	for(cellIterator_ = cellOfField_.begin(); cellIterator_ != cellOfField_.end(); ++cellIterator_) {
+		(*cellIterator_)->decideNextGeneration();
+	}
 }
 
 void Field::updateGeneration() {
-	for(int y = 0; y <= Hight_; ++y){
-			for(int x = 0; x <= Width_; ++x){
-				getCell(x, y)->updateGeneration();
-			}
-		}
+	for(cellIterator_ = cellOfField_.begin(); cellIterator_ != cellOfField_.end(); ++cellIterator_) {
+		(*cellIterator_)->updateGeneration();
+	}
 }
 
 int Field::calculateContainerPositionFromXY(int xPosition, int yPosition) {
