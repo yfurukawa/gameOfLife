@@ -79,20 +79,17 @@ void Cell::updateGeneration() {
 	isAlive_ = candidateAlive_;
 }
 
+bool Cell::isBone(int numberOfAliveCell) {
+	return numberOfAliveCell == 2 && isAlive();
+}
+
+bool Cell::isKeepingAlive(int numberOfAliveCell) {
+	return numberOfAliveCell == 3;
+}
+
 void Cell::decideNextGeneration() {
 	int numberOfAliveCell = checkNumberOfNeiborhoodIsAlive();
-	if (numberOfAliveCell == 1) {
-		candidateAlive_ = "-";
-	}
-	else if(numberOfAliveCell == 2 && isAlive()) {
-		candidateAlive_ = "*";
-	}
-	else if (numberOfAliveCell == 3) {
-		candidateAlive_ = "*";
-	}
-	else {
-		candidateAlive_ = "-";
-	}
+	candidateAlive_ = (isBone(numberOfAliveCell) || isKeepingAlive(numberOfAliveCell)) ? "*" : "-";
 }
 
 void Cell::printMark() {

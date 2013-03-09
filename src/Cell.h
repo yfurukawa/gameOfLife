@@ -46,6 +46,8 @@ protected:
 	void setUpperLeftCell(ICell* upperLeftCell);
 	void setUpperRightCell(ICell* upperRightCell);
 	int checkNumberOfNeiborhoodIsAlive();
+	bool isBone(int numberOfAliveCell);
+	bool isKeepingAlive(int numberOfAliveCell);
 
 public:
 	Cell();
