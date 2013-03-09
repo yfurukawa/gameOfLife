@@ -42,13 +42,13 @@ void Field::initializeField() {
 	int xPosition;
 	int yPosition;
 
-	std::cout << "初期状態で生きているセルの数 : ";
+	std::cout << "Number of Alive Cell when Initialization : ";
 	std::cin >> numberOfAliveCell;
 
 	for(int i = 0; i < numberOfAliveCell; ++i){
-		std::cout << "生きているセルの場所（x） : ";
+		std::cout << "Alive Cell(x) : ";
 		std::cin >> xPosition;
-		std::cout << "生きているセルの場所（y） : ";
+		std::cout << "Alive Cell(y) : ";
 		std::cin >> yPosition;
 		getCell(xPosition, yPosition)->setAlive();
 	}
