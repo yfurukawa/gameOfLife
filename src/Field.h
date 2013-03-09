@@ -17,6 +17,7 @@ public:
 	int Width_;
 	int Hight_;
 	std::vector<Cell*> cellOfField_;
+	std::vector<Cell*>::iterator cellIterator_;
 
 	void establishedRelationBwtweenCell();
 	void decideNextGeneration();

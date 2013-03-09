@@ -19,11 +19,9 @@ Field::Field(int Width, int Hight)  : Width_(Width-1), Hight_(Hight-1) {
 
 Field::~Field() {
 	// TODO Auto-generated destructor stub
-	for(int y = 0; y <= Hight_; ++y){
-			for(int x = 0; x <= Width_; ++x){
-				delete getCell(x, y);
-			}
-		}
+	for(cellIterator_ = cellOfField_.begin(); cellIterator_ != cellOfField_.end(); ++cellIterator_) {
+		delete *cellIterator_;
+	}
 }
 
 void Field::prepairField() {
