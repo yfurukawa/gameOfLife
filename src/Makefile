@@ -4,7 +4,6 @@ INCLUDE = -I/usr/incude -I/usr/local/include
 LIB_DIR = -L/usr/lib -L/usr/local/lib
 LIB =
 OPT = -O0 -g3 -Wall -fmessage-length=0
-
 TARGET = gameOfLife
 SRC= Cell.cpp NullCell.cpp Field.cpp ICell.cpp
 OBJ= Cell.o NullCell.o Field.o ICell.o
@@ -31,5 +30,5 @@ test: $(OBJ) $(TEST_OBJ)
 	$(CC) $(INCLUDE) $(TEST_INCLUDE) $(LIB_DIR) $(TEST_OPT) -o $(TEST_TARGET) $(OBJ) $(TEST_OBJ) $(LIB) $(TEST_LIB)
 
 $(TEST_OBJ): $(TEST_SRC)
-	$(CC) $(INCLUDE) $(TEST_INCLUDE) $(LIB_DIR) $(LIB) $(TEST_LIB) $(OPT) -c $(TEST_SRC)
+	$(CC) $(INCLUDE) $(TEST_INCLUDE) $(LIB_DIR) $(LIB) $(TEST_LIB) $(TEST_OPT) -c $(TEST_SRC)
 
