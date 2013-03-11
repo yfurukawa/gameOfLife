@@ -110,6 +110,15 @@ TEST_F(CellTest, AliveToDieDueToOverpopulation) {
 	EXPECT_EQ(0, sut->isAlive());
 }
 
+TEST_F(CellTest, printDashMarkWhenCellIsDead) {
+	EXPECT_EQ("-", sut->printMarkCheck());
+}
+
+TEST_F(CellTest, printAstahriskMarkWhenCellIsAlive) {
+	sut->setAlive();
+	EXPECT_EQ("*", sut->printMarkCheck());
+}
+
 void CellTest::prepairOneAliveCell() {
 	sut->setUpperLeftCell(nullCell);
 	sut->setUpperCell(nullCell);

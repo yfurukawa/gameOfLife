@@ -6,7 +6,7 @@
  */
 
 #include <iostream>
-#include <fstream>
+#include <sstream>
 #include "CellMock.h"
 
 CellMock::CellMock() {
@@ -54,10 +54,12 @@ int CellMock::checkNumberOfNeiborhoodIsAlive() {
 	return Cell::checkNumberOfNeiborhoodIsAlive();
 }
 
-void CellMock::printMark() {
-    std::ofstream ofs("output.txt");
-    std::streambuf* oldrdbuf = std::cout.rdbuf(ofs.rdbuf());
+std::string CellMock::printMarkCheck() {
+    std::stringstream ss;
+    std::streambuf* oldrdbuf = std::cout.rdbuf();
+    std::cout.rdbuf(ss.rdbuf());
     Cell::printMark();
 
     std::cout.rdbuf(oldrdbuf);
+	return ss.str();
 }

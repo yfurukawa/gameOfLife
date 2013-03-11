@@ -8,6 +8,7 @@
 #ifndef CELLMOCK_H_
 #define CELLMOCK_H_
 
+#include <string>
 #include "Cell.h"
 
 class CellMock: public Cell {
@@ -23,7 +24,7 @@ public:
 	void setUpperLeftCell(ICell* upperLeftCell);
 	void setUpperRightCell(ICell* upperRightCell);
 	int checkNumberOfNeiborhoodIsAlive();
-	void printMark();
+	std::string printMarkCheck();
 };
 
 #endif /* CELLMOCK_H_ */
