@@ -6,6 +6,7 @@
  */
 
 #include <iostream>
+#include <stdlib.h>
 #include "Field.h"
 
 Field::Field() : Width_(0), Hight_(0) {

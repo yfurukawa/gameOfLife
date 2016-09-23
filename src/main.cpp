@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <signal.h>
 #include "Field.h"
 
 volatile sig_atomic_t eflag = 0;
@@ -17,7 +18,7 @@ void handler(int signum) {
 
 int main(int argc, char** argv) {
 	if (signal(SIGINT, handler) == SIG_ERR) {
-		/* ƒGƒ‰[ˆ— */
+		/* ï¿½Gï¿½ï¿½ï¿½[ï¿½ï¿½ï¿½ï¿½ */
 	}
 
 	if(argc != 3) {

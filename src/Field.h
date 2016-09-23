@@ -13,7 +13,7 @@
 
 class Field {
 
-public:
+private:
 	int Width_;
 	int Hight_;
 	std::vector<Cell*> cellOfField_;
